@@ -1,9 +1,11 @@
 <template>
 <div class="about">
     <Navbar />
+    <!-- if there is no product in the cart then this container will run-->
     <v-container class="text-center" v-if="this.$store.state.cart.length==0">
         <h1>No Products Added</h1>
     </v-container>
+    <!-- if there is product in the cart then this container will run-->
     <v-container v-else>
         <v-row v-for="(product,index) in cart" :key="product.id">
             <v-col>
@@ -79,6 +81,7 @@
                     </v-row>
                     <v-row>
                         <v-col col="6">
+                            <!-- in this component only checkout button will show and when user will click on that button a dialog box will show on which user will input the address etc -->
                             <CheckOut />
                         </v-col>
                     </v-row>
@@ -108,12 +111,14 @@ export default {
     computed: {
         ...mapGetters(['cart']),
         ...mapGetters(['totalAmount']),
+        // this function will calculate the total amount of the cart
         calcSum() {
             return this.cart.reduce((total, item) => total + (item.price * item.quantity - ((item.discountPercentage / 100) * item.price)), 0)
         }
     },
     methods: {
         ...mapActions(['removeItem']),
+        // this function will remove the product from the cart
         remove(index) {
             this.removeItem(index);
         },

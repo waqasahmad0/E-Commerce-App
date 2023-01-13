@@ -93,10 +93,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-
     //fetching user details and checking wether the input details exists or not and then if exists the fetching all the data of that user
     async fetchUserData(state, user) {
-      // console.log(user);
       const getUserData = await fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
         headers: {
@@ -112,13 +110,10 @@ export default new Vuex.Store({
       if (getUserData.status == 200) {
         const userAuth = true;
         localStorage.setItem('userAuth', JSON.stringify(userAuth))
-        // console.log(this.state.needAuth);
-
         window.location.replace('/');
       } else {
         alert("Invalid Username/Password");
       }
-
     },
     //fetching all the products and then update that state 
     async fetchProducts({ commit }) {
@@ -131,32 +126,27 @@ export default new Vuex.Store({
       const category = await fetch('https://dummyjson.com/products/categories');
       const allProductCategory = await category.json();
       commit('updateProductsCategory', allProductCategory);
-      // console.log(this.state.categories);
     },
     //get all the products of the category which user selects
     async categoryProducts({ commit }, value) {
       const getCategory = await fetch(`https://dummyjson.com/products/category/${value}`);
       const searchedItems = await getCategory.json();
       commit('updateSearchedItems', searchedItems.products);
-
-      // console.log(this.searched);
     },
-    //it is just
+    //it is used for storing the product id which user wants to see the details
     getProduct() {
-      //  console.log(this.state.productId);
       localStorage.setItem('searchedID', this.state.productId);
       router.push({ name: 'ProductDetailView' });
     },
+    //it will fetch the product details of the product which user wants to see the details
     async getProductt({ commit }) {
-
       const id = localStorage.getItem('searchedID');
-
       const fetchProduct = await fetch(`https://dummyjson.com/products/${id}`);
       const fetchedProduct = await fetchProduct.json();
-
       commit('updateItems', fetchedProduct.images)
       commit('updateInfo', fetchedProduct);
     },
+    //it will count the number of products in the cart and also fetching the products for the cart
     async count({ commit }, val) {
       const value = this.state.counter + 1;
       commit('updatecounter', value);
@@ -164,12 +154,13 @@ export default new Vuex.Store({
       const newCart = await cartProduct.json();
       newCart.quantity = 1;
       commit('updateCart', newCart);
-
     },
+    //it will remove the product from the cart
     removeItem(context, val) {
       context.commit('REMOVE_PRODUCT', val);
       this.state.counter--;
     },
+    //it is used to add new product in the database
     async submit({ commit }, obj) {
       console.log(obj, "In Store");
       const addNewProduct = await fetch('https://dummyjson.com/products/add', {
@@ -186,13 +177,9 @@ export default new Vuex.Store({
       })
       console.log("New Product Added Status: ", addNewProduct.status);
       console.log("New Product: ", addNewProduct);
-      // 
       commit('updateNewProduct', addNewProduct)
-
-      console.log(this.state.products);
-      // this.$store.commit('updateNewProduct',await addNewProduct.json());
-
     },
+    //it will fetch the products which user searched by the keyword
     async searchProducts({ commit }, value) {
       console.log(value);
       const searchByKeyword = await fetch(`https://dummyjson.com/products/search?q=${value}`);
@@ -200,12 +187,12 @@ export default new Vuex.Store({
       commit('updateSearchedByWords', prod.products);
       console.log(prod.products);
     },
+    //used to logout the user
     logout() {
       localStorage.clear();
       router.replace({
         name: 'user-login'
       });
-      //submitting new product data
     },
   },
   modules: {

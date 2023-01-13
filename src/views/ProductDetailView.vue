@@ -4,6 +4,7 @@
     <v-container class="mt-10 border">
         <v-row>
             <v-col col="5">
+                <!-- product images will show in carousel -->
                 <v-carousel elevation-10>
                     <v-carousel-item v-for="(item, i) in items" :key="i" :src="item" reverse-transition="fade-transition" transition="fade-transition"></v-carousel-item>
                 </v-carousel>
@@ -23,7 +24,7 @@
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="primary" text @click="updateProductDataa">
-                                I accept
+                                Update
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -101,15 +102,17 @@ export default {
     methods: {
         ...mapActions(['getProductt']),
         ...mapActions(['count']),
-
+        // open dialoge for update product data
         openDialoge() {
             this.dialog = true;
         },
+        // update product data
         updateProductDataa() {
             this.dialog = false;
         }
     },
     created() {
+        // get product data
         this.getProductt();
     }
 }
