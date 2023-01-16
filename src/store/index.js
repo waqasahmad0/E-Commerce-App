@@ -95,6 +95,7 @@ export default new Vuex.Store({
   actions: {
     //fetching user details and checking wether the input details exists or not and then if exists the fetching all the data of that user
     async fetchUserData(state, user) {
+      console.log(user);
       const getUserData = await fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
         headers: {

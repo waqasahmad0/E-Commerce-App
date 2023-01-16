@@ -35,11 +35,7 @@ export default {
         reset() {
             this.$refs.form.reset();
         },
-        //logout
-        logout(){
-            this.$router.push({name:'user-login'})
-            localStorage.clear();
-        },
+       
         //submit form
         submit(e){
             e.preventDefault();

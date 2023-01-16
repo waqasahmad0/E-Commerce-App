@@ -1,6 +1,7 @@
 <template>
 <v-container>
-    <template><!-- Here we are displaying all the categories of Products-->
+    <template>
+        <!-- Here we are displaying all the categories of Products-->
         <v-chip v-for="category in allCategories" :key="category" v-on:click="categoryProduct(category)" color="info" class="ma-2">
             {{ category }}
         </v-chip>
@@ -80,6 +81,11 @@
                 <v-btn color="deep-purple" class="white--text" @click="count(product.id)">
                     Add to Cart
                 </v-btn>
+                <v-btn fab color="red" class="white--text ms-8" @click="deleteProductt(product.id)">
+                    <v-icon>
+                        mdi-trash-can
+                    </v-icon>
+                </v-btn>
             </v-card-actions>
         </v-card>
         <v-pagination class="pagination mb-2" v-model="page" :length="pageCount">
@@ -126,6 +132,14 @@ export default {
         ...mapActions(['getCategories']),
         ...mapActions(['categoryProducts']),
         ...mapActions(['count']),
+        async deleteProductt(id) {
+            console.log(id);
+            const fetchProduct = await fetch(`https://dummyjson.com/products/${id}`, {
+                method: 'DELETE',
+            })
+            console.log(fetchProduct);
+            alert("Product Deleted Successfully. Open console to see the response");
+        },
         //it will show the products of specific category
         categoryProduct(val) {
             this.categoryProducts(val);

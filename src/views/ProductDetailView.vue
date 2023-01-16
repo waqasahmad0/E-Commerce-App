@@ -15,15 +15,14 @@
                         <v-card-title class="text-h5 grey lighten-2">
                             Privacy Policy
                         </v-card-title>
-                        <v-text-field v-model="titlee" counter="25" label="Enter New Title">
+                        <v-text-field v-model="updatedProductInfo.titlee" counter="25" label="Enter New Title">
                         </v-text-field>
-                        <v-text-field v-model="descriptionn" counter="25" label="Enter New Description">
+                        <v-text-field v-model="updatedProductInfo.descriptionn" counter="25" label="Enter New Description">
                         </v-text-field>
                         <v-divider></v-divider>
-                        {{ titlee }}{{ descriptionn }}
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" text @click="updateProductDataa">
+                            <v-btn color="primary" text @click="updateProductDataa(info.id)">
                                 Update
                             </v-btn>
                         </v-card-actions>
@@ -94,8 +93,10 @@ export default {
     },
     data() {
         return {
-            titlee: '',
-            descriptionn: '',
+            updatedProductInfo: {
+                titlee: '',
+                descriptionn: ''
+            },
             dialog: false,
         }
     },
@@ -107,8 +108,20 @@ export default {
             this.dialog = true;
         },
         // update product data
-        updateProductDataa() {
+        async updateProductDataa(id) {
             this.dialog = false;
+            const fetchProduct = await fetch(`https://dummyjson.com/products/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: this.updatedProductInfo.titlee,
+                    description: this.updatedProductInfo.descriptionn
+                })
+            })
+            console.log(fetchProduct);
+            alert("Product Updated Successfully. Open Console to see the response.");
         }
     },
     created() {
