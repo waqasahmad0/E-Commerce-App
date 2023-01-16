@@ -117,6 +117,7 @@ export default {
         updatePage() {
             let _start = (this.page - 1) * this.pageSize;
             let _end = _start + this.pageSize;
+            this.$vuetify.goTo(0)
             return this.uProducts.slice(_start, _end);
         },
         ...mapGetters(['allCategories']),
