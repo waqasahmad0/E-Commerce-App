@@ -1,5 +1,5 @@
 <template>
-<v-container align="center" justify="center" class="mt-0">
+<v-container align="center" justify="center" class="mt-0" v-if="userAuth==true">
     <v-row class="bg-img" justify="space-around">
         <v-col cols="12">
             <v-card align-center width="400">
@@ -69,8 +69,12 @@ export default {
     name: "UserProfileView",
     data() {
         return {
-            data: JSON.parse(localStorage.getItem('user'))
+            data: JSON.parse(localStorage.getItem('user')),
+            userAuth: false,
         }
+    },
+    mounted() {
+        localStorage.getItem('user') ? this.userAuth = true : this.userAuth = false;
     },
 }
 </script>

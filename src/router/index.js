@@ -20,17 +20,13 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: {
-        needsAuth:true
-      }
+      
     },
     {
       path: '/about',
       name: 'about',
       component: AboutView,
-      meta: {
-        needsAuth:true
-      }
+      
     },
     {
       path: '/user-login',
@@ -41,17 +37,13 @@ const router = new VueRouter({
       path: '/product-detail',
       name: 'ProductDetailView',
       component: ProductDetailView,
-      meta: {
-        needsAuth:true
-      }
+      
     },
     {
       path: '/user-cart',
       name: 'UserCartView',
       component: UserCartView,
-      meta: {
-        needsAuth:true
-      }
+
     },
     {
       path: '/user-profile',

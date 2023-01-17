@@ -1,5 +1,6 @@
 <template>
-<v-container>
+    <div>
+    <NavbarVue />
     <v-row>
         <v-col col="4"></v-col>
         <v-col col="4">
@@ -18,10 +19,11 @@
         </v-col>
         <v-col col="4"></v-col>
     </v-row>
-</v-container>
+</div>
 </template>
 
 <script>
+import NavbarVue from '@/components/Navbar.vue';
 export default {
     data() {
         return {
@@ -31,6 +33,9 @@ export default {
             },
             emailError: '',
         }
+    },
+    components: {
+        NavbarVue,
     },
     methods: {
         // reset form

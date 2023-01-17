@@ -66,7 +66,10 @@
                 <v-icon>mdi-cart</v-icon>
             </v-badge>
         </v-btn>
-        <v-btn icon @click="logout">
+        <v-btn icon VueRouter :to="userLogin" v-if="userAuth==false || userAuth == null">
+            <v-icon>mdi-login</v-icon>
+        </v-btn>
+        <v-btn icon @click="logout" v-else>
             <v-icon>mdi-logout</v-icon>
         </v-btn>
         <v-btn icon>
@@ -157,6 +160,7 @@ import {
 export default {
     data() {
         return {
+            userAuth:false,
             searchInput: '',
             dialog: false,
             searchDialog: false,
@@ -167,6 +171,7 @@ export default {
                 category: '',
             },
             cartRoute: '/user-cart',
+            userLogin: '/user-login',
             terms: false,
 
             fullList: ["smartphones",
@@ -267,7 +272,10 @@ export default {
         close() {
             this.searchDialog = false;
         }
-    }
+    },
+    mounted() {
+        localStorage.getItem('user') ? this.userAuth = true : this.userAuth = false;
+    },
 
 }
 </script>

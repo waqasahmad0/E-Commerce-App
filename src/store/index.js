@@ -109,8 +109,8 @@ export default new Vuex.Store({
       const convertUserData = await getUserData.json();
       localStorage.setItem('user', JSON.stringify(convertUserData));
       if (getUserData.status == 200) {
-        const userAuth = true;
-        localStorage.setItem('userAuth', JSON.stringify(userAuth))
+        // const userAuth = true;
+        localStorage.setItem('userAuth', true)
         window.location.replace('/');
       } else {
         alert("Invalid Username/Password");
@@ -149,12 +149,17 @@ export default new Vuex.Store({
     },
     //it will count the number of products in the cart and also fetching the products for the cart
     async count({ commit }, val) {
-      const value = this.state.counter + 1;
-      commit('updatecounter', value);
-      const cartProduct = await fetch(`https://dummyjson.com/products/${val}`);
-      const newCart = await cartProduct.json();
-      newCart.quantity = 1;
-      commit('updateCart', newCart);
+      if (localStorage.getItem('user') ?  true : false) {
+        const value = this.state.counter + 1;
+        commit('updatecounter', value);
+        const cartProduct = await fetch(`https://dummyjson.com/products/${val}`);
+        const newCart = await cartProduct.json();
+        newCart.quantity = 1;
+        commit('updateCart', newCart);
+      }else{
+        alert("Please Login First");
+        router.push({ name: 'Login' });
+      }
     },
     //it will remove the product from the cart
     removeItem(context, val) {
@@ -191,9 +196,12 @@ export default new Vuex.Store({
     //used to logout the user
     logout() {
       localStorage.clear();
+      localStorage.setItem('userAuth', false);
+      window.location.reload();
       router.replace({
-        name: 'user-login'
+        name: 'home'
       });
+
     },
   },
   modules: {

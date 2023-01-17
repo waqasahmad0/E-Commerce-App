@@ -1,5 +1,5 @@
 <template>
-<v-footer padless>
+<v-footer padless class="mt-15">
     <v-card flat tile class="indigo lighten-5 gray--text text-center">
         <v-card-text>
             <v-btn v-for="icon in icons" :key="icon" class="mx-4 gray--text" icon>
