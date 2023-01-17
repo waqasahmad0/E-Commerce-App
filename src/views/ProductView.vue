@@ -17,7 +17,7 @@
                     <template slot="progress">
                         <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
                     </template>
-                    <v-img height="250" :src=item.thumbnail></v-img>
+                    <v-img height="250" :src=item.thumbnail @click="getProduct(`${item.id}`)"></v-img>
                     <v-card-title @click="getProduct(`${item.id}`)">{{ item.title }}</v-card-title>
                     <v-card-text>
                         <v-row align="center" class="mx-0">
@@ -59,7 +59,7 @@
             <v-img height="250" :src=product.thumbnail>
                 <v-chip color="red mt-2 ms-2">{{ product.discountPercentage }}% OFF</v-chip>
             </v-img>
-            <v-card-title @click="getProduct(`${product.id}`)">{{ product.title }}</v-card-title>
+            <v-card-title id="productTitle" @click="getProduct(`${product.id}`)">{{ product.title }}</v-card-title>
             <v-card-text>
                 <v-row align="center" class="mx-0">
                     <v-rating :value=product.rating color="primary" dense half-increments readonly size="14"></v-rating>
@@ -161,3 +161,9 @@ export default {
     },
 }
 </script>
+<style>
+#productTitle:hover {
+    color:grey;
+    cursor: pointer;
+}
+</style>
