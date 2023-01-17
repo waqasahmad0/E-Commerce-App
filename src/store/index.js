@@ -158,7 +158,6 @@ export default new Vuex.Store({
         commit('updateCart', newCart);
       }else{
         alert("Please Login First");
-        router.push({ name: 'Login' });
       }
     },
     //it will remove the product from the cart
