@@ -89,14 +89,12 @@
             </v-layout>
         </v-row>
     </v-container>
-    <Footer />
 </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
 import CheckOut from '@/components/CheckOut.vue';
-import Footer from '@/components/Footer.vue';
 import {
     mapGetters,
     mapActions
@@ -106,7 +104,6 @@ export default {
     components: {
         Navbar,
         CheckOut,
-        Footer
     },
     data() {
         return {}
