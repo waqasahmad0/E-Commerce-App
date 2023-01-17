@@ -17,8 +17,8 @@
                     <template slot="progress">
                         <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
                     </template>
-                    <v-img height="250" :src=item.thumbnail @click="getProduct(`${item.id}`)"></v-img>
-                    <v-card-title @click="getProduct(`${item.id}`)">{{ item.title }}</v-card-title>
+                    <v-img id="productImage" height="250" :src=item.thumbnail @click="getProduct(`${item.id}`)"></v-img>
+                    <v-card-title id="productTitle" @click="getProduct(`${item.id}`)">{{ item.title }}</v-card-title>
                     <v-card-text>
                         <v-row align="center" class="mx-0">
                             <v-rating :value=item.rating color="primary" dense half-increments readonly size="14"></v-rating>
@@ -56,7 +56,7 @@
             <template slot="progress">
                 <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
             </template>
-            <v-img height="250" :src=product.thumbnail>
+            <v-img height="250" id="productImage" :src=product.thumbnail @click="getProduct(`${product.id}`)">
                 <v-chip color="red mt-2 ms-2">{{ product.discountPercentage }}% OFF</v-chip>
             </v-img>
             <v-card-title id="productTitle" @click="getProduct(`${product.id}`)">{{ product.title }}</v-card-title>
@@ -164,6 +164,10 @@ export default {
 <style>
 #productTitle:hover {
     color:grey;
+    cursor: pointer;
+}
+#productImage:hover {
+    opacity: 0.8;
     cursor: pointer;
 }
 </style>
