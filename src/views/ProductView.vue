@@ -67,9 +67,10 @@
                         {{ product.rating }}
                     </div>
                 </v-row>
-                <v-layout class="my-4 text-subtitle-1">
-                    <div> $ • </div>
-                    <div class="text-decoration-line-through"> {{ product.price }}</div>
+                <v-layout class=" text-subtitle-1">
+                    
+                    <v-col class="red--text"> $ • {{ product.price }}<br /> <p class="my-0 grey--text">After Discount:</p> <p class="text-subtitle-1 text-decoration-underline green--text">$ • {{ Math.ceil(product.price - ((product.discountPercentage / 100) * product.price)) }}</p></v-col>
+                    
                 </v-layout>
                 <div>{{ product.description }}</div>
             </v-card-text>
