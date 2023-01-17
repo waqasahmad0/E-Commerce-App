@@ -1,6 +1,5 @@
 <template>
 <div>
-    <Navbar />
     <Header />
     <v-container>
         <v-row>
@@ -12,13 +11,11 @@
 </div>
 </template>
 <script>
-import Navbar from '@/components/Navbar.vue';
 import ProductView from './ProductView.vue';
 import Header from '@/components/Header.vue';
 export default {
     name: "Home",
     components: {
-        Navbar,
         ProductView,
         Header,
     },

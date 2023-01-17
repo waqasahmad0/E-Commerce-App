@@ -81,7 +81,7 @@
                 <v-btn color="deep-purple" class="white--text" @click="count(product.id)">
                     Add to Cart
                 </v-btn>
-                <v-btn fab color="red" class="white--text ms-8" @click="deleteProductt(product.id)">
+                <v-btn fab color="red" class="white--text ms-8" @click="deleteProductt(product.id)" v-if="userAuth==true">
                     <v-icon>
                         mdi-trash-can
                     </v-icon>
@@ -106,6 +106,7 @@ export default {
             page: 1,
             pageSize: 10,
             dialog: false,
+            userAuth: false,
         }
     },
     created() {
@@ -155,6 +156,7 @@ export default {
     mounted() {
         this.fetchProducts();
         this.getCategories();
+        localStorage.getItem('user') ? this.userAuth = true : this.userAuth = false;
     },
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
 <div>
-    <Navbar />
     <v-container class="mt-10 border">
         <v-row>
             <v-col col="5">
@@ -22,7 +21,7 @@
                         <v-divider></v-divider>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" text @click="updateProductDataa(info.id)">
+                            <v-btn color="primary" text @click="updateProductDataa(info.id)" >
                                 Update
                             </v-btn>
                         </v-card-actions>
@@ -33,7 +32,7 @@
                         <h3>{{ info.title }}</h3><small>{{ info.brand }}</small>
                     </v-col>
                     <v-col col="9">
-                        <v-btn color="success" @click="openDialoge">Update Title <v-icon>mdi-pen</v-icon>
+                        <v-btn color="success" @click="openDialoge" v-if="userAuth==true">Update Title <v-icon>mdi-pen</v-icon>
                         </v-btn>
                     </v-col>
                 </v-layout>
@@ -77,16 +76,12 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 import {
     mapActions,
     mapGetters
 } from 'vuex';
 export default {
     name: "ProductDetailView",
-    components: {
-        Navbar
-    },
     computed: {
         ...mapGetters(['items']),
         ...mapGetters(['info'])
@@ -98,6 +93,7 @@ export default {
                 descriptionn: ''
             },
             dialog: false,
+            userAuth: false
         }
     },
     methods: {
@@ -127,6 +123,9 @@ export default {
     created() {
         // get product data
         this.getProductt();
+    },
+    mounted(){
+        localStorage.getItem('user') ? this.userAuth = true : this.userAuth = false;
     }
 }
 </script>

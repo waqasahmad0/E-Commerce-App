@@ -9,16 +9,16 @@
             </v-btn>
         </v-card-text>
         <v-row>
-            <v-col col="3">
+            <v-col col="2">
 
             </v-col>
-            <v-col col="6">
+            <v-col col="8">
                 <v-card-text class="gray--text pt-0">
 
                     Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus
                 </v-card-text>
             </v-col>
-            <v-col col="3">
+            <v-col col="2">
 
             </v-col>
         </v-row>
@@ -26,7 +26,7 @@
         <v-divider></v-divider>
 
         <v-card-text class="gray--text">
-            {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+            {{ new Date().getFullYear() }} — <strong>D' Country Store</strong>
         </v-card-text>
     </v-card>
 </v-footer>

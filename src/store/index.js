@@ -149,14 +149,22 @@ export default new Vuex.Store({
     },
     //it will count the number of products in the cart and also fetching the products for the cart
     async count({ commit }, val) {
+      console.log(this.state.cart.length);
       if (localStorage.getItem('user') ?  true : false) {
+        for(let i=0;i<this.state.cart.length;i++){
+
+          if(val==this.$store.state.cart[i].id){
+            alert("Product Already Exists in Cart");
+          }
+        }
         const value = this.state.counter + 1;
         commit('updatecounter', value);
         const cartProduct = await fetch(`https://dummyjson.com/products/${val}`);
         const newCart = await cartProduct.json();
         newCart.quantity = 1;
         commit('updateCart', newCart);
-      }else{
+      }
+      else{
         alert("Please Login First");
       }
     },

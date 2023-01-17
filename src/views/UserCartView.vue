@@ -1,6 +1,5 @@
 <template>
 <div class="about">
-    <Navbar />
     <!-- if there is no product in the cart then this container will run-->
     <v-container class="text-center" v-if="this.$store.state.cart.length==0">
         <h1>No Products Added</h1>
@@ -93,7 +92,6 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
 import CheckOut from '@/components/CheckOut.vue';
 import {
     mapGetters,
@@ -102,7 +100,6 @@ import {
 export default {
     name: "About",
     components: {
-        Navbar,
         CheckOut,
     },
     data() {
