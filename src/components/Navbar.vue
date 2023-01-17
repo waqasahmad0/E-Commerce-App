@@ -6,7 +6,7 @@
             <img src="../assets/D'Country Store.png" alt="logo" width="330" height="40" class="d-none d-sm-block d-md-block d-lg-block">
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon @click="dialog=true">
+        <v-btn icon @click="dialog=true" v-if="userAuth==true">
             <v-icon>mdi-plus-circle-outline</v-icon>
             <v-snackbar v-model="snackbar" absolute top right color="success">
                 <v-icon dark class="me-3">
@@ -61,7 +61,7 @@
                 </template>
             </v-dialog>
         </v-btn>
-        <v-btn icon VueRouter :to="cartRoute">
+        <v-btn icon VueRouter :to="cartRoute" >
             <v-badge :content="counter" :value="counter" color="red" overlap>
                 <v-icon>mdi-cart</v-icon>
             </v-badge>
@@ -73,7 +73,7 @@
             <v-icon>mdi-logout</v-icon>
         </v-btn>
         <v-btn icon>
-            <v-icon @click="searchDialog=true">mdi-magnify</v-icon>
+            <v-icon @click="searchDialog=true" >mdi-magnify</v-icon>
             <v-dialog v-model="searchDialog" class="text-center">
                 <v-card>
                     <v-row>
